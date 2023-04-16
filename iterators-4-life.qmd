@@ -1,0 +1,294 @@
+---
+title: "Falling in Love with Iterators"
+author: "Eric Burden"
+format: 
+  revealjs:
+    theme: [moon, css/lang-icons.css, css/styles.css]
+    transition: slide
+    transition-speed: fast
+    navigation-mode: vertical
+    output-file: index
+    output-ext: html
+---
+
+# What Are Iterators?
+
+::: r-stack
+![](img/fire_emoji.png){.fragment height="500px"}
+:::
+
+## What Are Iterators?
+
+::: {style="margin-bottom: 45px"}
+> "In computer programming, an iterator is an object that enables a programmer to traverse a container..." - Wikipedia
+:::
+
+::: {.fragment style="margin-bottom: 45px"}
+Translation: An iterator *holds state* and *produces values*. You can loop over it.
+:::
+
+::: fragment
+``` {.python code-line-numbers="|3"}
+numbers = [1, 2, 3, 4, 5]
+
+for number in numbers:
+  print(number)
+```
+:::
+
+# Some Common Iterator Patterns
+
+|                                                                                 |              |     |        |        |            |
+|------------|------------|------------|------------|------------|------------|
+| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/python.png){width="100"} | enumerate    | map | filter | reduce | accumulate |
+| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/js.png){width="100"}     | entries      | map | filter | reduce |            |
+| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/java.png){width="100"}   | zipWithIndex | map | filter | reduce |            |
+| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/rust.png){width="100"}   | enumerate    | map | filter | reduce | scan       |
+| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/julia.png){width="100"}  | enumerate    | map | filter | reduce | accumulate |
+
+## Enumerate: Loop with Indices
+
+::: v-center-container
+::: inner
+::: {style="margin-bottom: 45px"}
+
+``` python
+names = ["Dwight", "Pam", "Jim", "Cathy", "Michael", "Jan"]
+
+for index, name in enumerate(names):
+  print(index, name)
+```
+:::
+::: fragment
+```         
+0 Dwight
+1 Pam
+2 Jim
+3 Cathy
+4 Michael
+5 Jan
+```
+:::
+:::
+:::
+
+## Map: Loop with Transformations
+
+::: v-center-container
+::: inner
+::: {style="margin-bottom:45px"}
+``` javascript
+numbers = [1, 2, 3, 4, 5]
+
+for (n of numbers.map(x => x * 2)) {
+  console.log(n)
+}
+```
+:::
+::: fragment
+```
+2
+4
+6
+8
+10
+```
+:::
+:::
+:::
+
+## Filter: Loop with Standards
+
+::: v-center-container
+::: inner
+::: {style="margin-bottom:45px"}
+``` java
+import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+   public static void main(String[] args) {
+     List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+     Stream<Integer> evenNumberStream = numbers.stream().filter(n -> n % 2 == 0);
+     for (int n: (Iterable<Integer>) () -> evenNumberStream.iterator()) {
+       System.out.println(n);
+     }
+   }
+}
+```
+:::
+::: fragment
+```
+2
+4
+6
+```
+:::
+:::
+:::
+
+## Reduce: Loop to a Value
+
+::: v-center-container
+::: inner
+::: {style="margin-bottom:45px"}
+``` rust
+fn main() {
+    let numbers = vec![1, 2, 3, 4, 5];
+    let sum = numbers.into_iter().reduce(|acc, v| acc + v).unwrap();
+    println!("{sum}");
+}
+```
+:::
+::: fragment
+```
+15
+```
+:::
+:::
+:::
+
+## Accumulate: Loop with Baggage
+
+::: v-center-container
+::: inner
+::: {style="margin-bottom:45px"}
+``` julia
+numbers = [1, 2, 3, 4, 5]
+for n in accumulate(+, numbers)
+  println(n)
+end
+```
+:::
+::: fragment
+```
+1
+3
+6
+10
+15
+```
+:::
+:::
+:::
+
+# Roll Your Own
+
+::: r-stack
+![](img/burrito.jpg){height="500px"}
+:::
+
+## Run Length Encoding
+
+``` {.rust code-line-numbers="|1-4|7|8|9,10|12-20|21|25-34"}
+struct RunLengthEncodeIter<T, I> {
+    value: Option<T>,
+    iter: I,
+}
+
+impl<T, I> Iterator for RunLengthEncodeIter<T, I> {
+    type Item = (usize, T);
+
+    fn next(&mut self) -> Option<Self::Item> {
+        let value = self.value?;
+        let mut count = 1;
+        loop {
+            match self.iter.next() {
+                Some(v) if v == value => count += 1,
+                any => {
+                    self.value = any;
+                    break;
+                }
+            }
+        }
+        Some((count, value))
+    }
+}
+
+trait RunLengthEncode<T, I> {
+    fn run_length_encode(self) -> RunLengthEncodeIter<T, I>;
+}
+
+impl<T, I> RunLengthEncode<T, I> for I {
+    fn run_length_encode(mut self) -> RunLengthEncodeIter<T, I> {
+        let value = self.next();
+        RunLengthEncodeIter { value, iter: self }
+    }
+}
+```
+
+## It Lives!
+
+::: v-center-container
+::: inner
+::: {style="margin-bottom:45px"}
+```{.rust}
+fn main() {
+    let string = "aaabbccccdeee";
+    let rle_chars = string.chars().run_length_encode().collect::<Vec<_>>();
+    println!("{rle_chars:?}");
+}
+```
+:::
+::: fragment
+```
+[(3, 'a'), (2, 'b'), (4, 'c'), (1, 'd'), (3, 'e')]
+```
+:::
+:::
+:::
+
+
+# Iterator Combinators
+
+::: r-stack
+![](img/turtles.jpg){height="500px"}
+:::
+
+## Iterator Combinators
+
+::: r-stack
+![](img/assembly-line.jpg){height="500px"}
+:::
+
+## Look and Say Sequence
+
+::: incremental
+- 1      -> "one one"
+- 11     -> "two ones"
+- 21     -> "one two one one"
+- 1211   -> "one one one two two ones"
+- 111221 -> "three ones two twos one one"
+- 312211 -> ...
+:::
+
+## All the Lovely Iterators
+
+::: v-center-container
+``` {.rust code-line-numbers="|3-7|9-17"}
+use itertools::iterate;
+
+/// Part 1: Write a function to take one value in the look-and-say
+/// sequence and produce the next value.
+pub fn next_look_and_say_number(number: u128) -> u128 {
+    number.digits().run_length_encode().into()
+}
+
+/// Part 2: Produce the functionality to take one value in the
+/// look-and-say sequence and produce an arbitrary number of the next
+/// values in the sequence.
+pub fn next_n_look_and_say_numbers(number: u128, n: usize) -> Vec<u128> {
+    iterate(number, |x| next_look_and_say_number(*x))
+        .skip(1)
+        .take(n)
+        .collect()
+}
+```
+:::
+
+# Questions?
+
+::: r-stack
+![](img/question.png){height="500px"}
+:::
