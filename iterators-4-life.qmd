@@ -11,10 +11,12 @@ format:
     output-ext: html
 ---
 
-# What Are Iterators?
+# {#happy-seal data-menu-title="You, On Iterators" background="img/happy-kid.jpg"}
 
-::: r-stack
-![](img/fire_emoji.png){.fragment height="500px"}
+::: v-center-container
+::: floating-title
+Iterators, You Say?
+:::
 :::
 
 ## What Are Iterators?
@@ -173,10 +175,12 @@ end
 :::
 :::
 
-# Roll Your Own
+# {#roll-your-own data-menu-title="Roll Your Own" background="img/burrito.jpg"}
 
-::: r-stack
-![](img/burrito.jpg){height="500px"}
+::: v-center-container
+::: floating-title
+Roll Your Own
+:::
 :::
 
 ## Run Length Encoding
@@ -240,16 +244,21 @@ fn main() {
 :::
 
 
-# Iterator Combinators
+# {#iterator-combinators data-menu-title="Iterator Combinators" background="img/turtles.jpg"}
 
-::: r-stack
-![](img/turtles.jpg){height="500px"}
+::: v-center-container
+::: floating-title
+Iterator Combinators
+:::
 :::
 
-## Iterator Combinators
 
-::: r-stack
-![](img/assembly-line.jpg){height="500px"}
+## {#assembly-line data-menu-title="More Like This..." background="img/assembly-line.jpg"}
+
+::: v-center-container
+::: floating-title
+More Like This...
+:::
 :::
 
 ## Look and Say Sequence
@@ -287,7 +296,7 @@ pub fn next_n_look_and_say_numbers(number: u128, n: usize) -> Vec<u128> {
 ```
 :::
 
-# Questions?
+# {#questions-slide data-menu-title="Questions?"}
 
 ::: r-stack
 ![](img/question.png){height="500px"}

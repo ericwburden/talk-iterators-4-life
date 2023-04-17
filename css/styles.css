@@ -6,3 +6,16 @@
   align-items: center;
   height: 90%;
 }
+
+.floating-title {
+  background-color: #ffd705;
+  background-color: rgba(255, 215, 5, 0.5);
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.floating-title p {
+  font-size: 2em;
+  color: #002b36;
+  font-family: League Gothic, sans-serif;
+}
