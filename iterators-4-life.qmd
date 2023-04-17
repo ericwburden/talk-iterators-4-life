@@ -40,11 +40,11 @@ for number in numbers:
 
 |                                                                                 |              |     |        |        |            |
 |------------|------------|------------|------------|------------|------------|
-| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/python.png){width="100"} | enumerate    | map | filter | reduce | accumulate |
-| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/js.png){width="100"}     | entries      | map | filter | reduce |            |
-| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/java.png){width="100"}   | zipWithIndex | map | filter | reduce |            |
-| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/rust.png){width="100"}   | enumerate    | map | filter | reduce | scan       |
-| ![](iterators-4-life_files/libs/revealjs/dist/img/lang/julia.png){width="100"}  | enumerate    | map | filter | reduce | accumulate |
+| ![](/img/lang/python.png){width="100"} | enumerate    | map | filter | reduce | accumulate |
+| ![](/img/lang/js.png){width="100"}     | entries      | map | filter | reduce |            |
+| ![](/img/lang/java.png){width="100"}   | zipWithIndex | map | filter | reduce |            |
+| ![](/img/lang/rust.png){width="100"}   | enumerate    | map | filter | reduce | scan       |
+| ![](/img/lang/julia.png){width="100"}  | enumerate    | map | filter | reduce | accumulate |
 
 ## Enumerate: Loop with Indices
 
