@@ -5,7 +5,7 @@
 }
 
 .reveal pre.python:after {
-  background-image: url("../img/lang/python.png");
+  background-image: url("/img/lang/python.png");
   background-size: 50px 50px;
   width: 50px;
   height: 50px;
@@ -17,7 +17,7 @@
 }
 
 .reveal pre.javascript:after {
-  background-image: url("../img/lang/js.png");
+  background-image: url("/img/lang/js.png");
   background-size: 50px 50px;
   width: 50px;
   height: 50px;
@@ -29,7 +29,7 @@
 }
 
 .reveal pre.java:after {
-  background-image: url("../img/lang/java.png");
+  background-image: url("/img/lang/java.png");
   background-size: 50px 50px;
   width: 50px;
   height: 50px;
@@ -41,7 +41,7 @@
 }
 
 .reveal pre.rust:after {
-  background-image: url("../img/lang/rust.png");
+  background-image: url("/img/lang/rust.png");
   background-size: 50px 50px;
   width: 50px;
   height: 50px;
@@ -53,7 +53,7 @@
 }
 
 .julia:after {
-  background-image: url("../img/lang/julia.png");
+  background-image: url("/img/lang/julia.png");
   background-size: 50px 50px;
   width: 50px;
   height: 50px;
