@@ -669,41 +669,8 @@ Eric Burden
 </div>
 </div>
 </section>
-<section id="look-and-say-sequence" class="slide level2">
-<h2>Look and Say Sequence</h2>
-<div>
-<ul>
-<li class="fragment">1 -&gt; “one one”</li>
-<li class="fragment">11 -&gt; “two ones”</li>
-<li class="fragment">21 -&gt; “one two one one”</li>
-<li class="fragment">1211 -&gt; “one one one two two ones”</li>
-<li class="fragment">111221 -&gt; “three ones two twos one one”</li>
-<li class="fragment">312211 -&gt; …</li>
-</ul>
-</div>
+
 </section>
-<section id="all-the-lovely-iterators" class="slide level2">
-<h2>All the Lovely Iterators</h2>
-<div class="v-center-container">
-<div class="sourceCode" id="cb15" data-code-line-numbers="|3-7|9-17"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">use</span> <span class="pp">itertools::</span>iterate<span class="op">;</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co">/// Part 1: Write a function to take one value in the look-and-say</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">/// sequence and produce the next value.</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="kw">pub</span> <span class="kw">fn</span> next_look_and_say_number(number<span class="op">:</span> <span class="dt">u128</span>) <span class="op">-&gt;</span> <span class="dt">u128</span> <span class="op">{</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>    number<span class="op">.</span>digits()<span class="op">.</span>run_length_encode()<span class="op">.</span>into()</span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="op">}</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co">/// Part 2: Produce the functionality to take one value in the</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co">/// look-and-say sequence and produce an arbitrary number of the next</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="co">/// values in the sequence.</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="kw">pub</span> <span class="kw">fn</span> next_n_look_and_say_numbers(number<span class="op">:</span> <span class="dt">u128</span><span class="op">,</span> n<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a>    iterate(number<span class="op">,</span> <span class="op">|</span>x<span class="op">|</span> next_look_and_say_number(<span class="op">*</span>x))</span>
-<span id="cb15-14"><a href="#cb15-14"></a>        <span class="op">.</span>skip(<span class="dv">1</span>)</span>
-<span id="cb15-15"><a href="#cb15-15"></a>        <span class="op">.</span>take(n)</span>
-<span id="cb15-16"><a href="#cb15-16"></a>        <span class="op">.</span>collect()</span>
-<span id="cb15-17"><a href="#cb15-17"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section></section>
 <section id="questions-slide" class="title-slide slide level1 center" data-menu-title="Questions?">
 <h1></h1>
 <div class="r-stack">

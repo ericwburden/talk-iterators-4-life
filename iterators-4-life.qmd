@@ -268,7 +268,7 @@ More Like This...
 :::
 :::
 
-## Look and Say Sequence
+## Look and Say Sequence {visibility="hidden"}
 
 ::: incremental
 -   1 -\> "one one"
@@ -279,7 +279,7 @@ More Like This...
 -   312211 -\> ...
 :::
 
-## All the Lovely Iterators
+## All the Lovely Iterators {visibility="hidden"}
 
 ::: v-center-container
 ``` {.rust code-line-numbers="|3-7|9-17"}
